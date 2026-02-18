@@ -1,0 +1,42 @@
+services:
+
+  api:
+    build: ./api
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - sqlite_data:/app/data
+    networks:
+      - backend
+      - frontend
+
+  ingestor:
+    build: ./ingestor
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - sqlite_data:/app/data
+    networks:
+      - backend
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api
+    networks:
+      - frontend
+
+volumes:
+  sqlite_data:
+
+
+networks:
+  backend:
+  frontend:
