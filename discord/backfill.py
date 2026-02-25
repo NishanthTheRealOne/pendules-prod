@@ -40,7 +40,7 @@ def message_to_dict(message: discord.Message) -> dict:
 class BackfillClient(discord.Client):
     async def on_ready(self):
         logger.info("Connecté : %s (id=%s)", self.user, self.user.id)
-        Base.metadata.create_all(bind=engine)
+        Base.metadata.create_all(bind=engine, checkfirst=True)
 
         channel_ids = settings.channel_id_list
         logger.info("Channel IDs depuis la config : %s", channel_ids)

@@ -10,7 +10,7 @@ app = FastAPI(title=settings.app_name, version="1.0.0")
 
 @app.on_event("startup")
 def on_startup() -> None:
-    Base.metadata.create_all(bind=engine)
+    Base.metadata.create_all(bind=engine, checkfirst=True)
 
 
 @app.get("/health")
