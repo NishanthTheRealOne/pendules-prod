@@ -2,10 +2,12 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
+# Le contexte de build est le dossier racine du projet
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+# Copier le code de l'API
+COPY app/ ./app
 
 RUN mkdir -p /app/data
 

@@ -2,7 +2,7 @@
 set -e
 
 echo "[entrypoint] Lancement du backfill Discord..."
-python -m discord.backfill
+python -m pendules_discord.backfill
 
 echo "[entrypoint] Backfill terminé, démarrage de l'ingestor Discord..."
-python -m discord.ingestor
+python -m pendules_discord.ingestor

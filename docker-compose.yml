@@ -1,7 +1,9 @@
 services:
 
   api:
-    build: ./api
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
     restart: always
     env_file:
       - .env
@@ -12,7 +14,9 @@ services:
       - frontend
 
   ingestor:
-    build: ./ingestor
+    build:
+      context: .
+      dockerfile: ./discord/Dockerfile
     restart: always
     env_file:
       - .env
